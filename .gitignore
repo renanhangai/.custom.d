@@ -1,4 +1,4 @@
 # Emacs files
-/elpa
-/ido.last
-/init.elc
+/.emacs.d/elpa
+/.emacs.d/ido.last
+/.emacs.d/init.elc
