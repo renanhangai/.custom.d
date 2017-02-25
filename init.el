@@ -25,6 +25,7 @@
 
 (defun user-configure()
   ;; Install packages
+  (package-initialize t)
   (unless package-archive-contents
     (package-refresh-contents))
   (dolist (package my-package-list)
@@ -56,6 +57,9 @@
   ;; Configure extensions to load
   ;;
   (defun user-configure-file-modes ()
+	(add-to-list 'auto-mode-alist '("\\.json\\'" . json-mode))
+	(add-to-list 'auto-mode-alist '("\\.babelrc\\'" . json-mode))
+	(add-to-list 'auto-mode-alist '("\\.eslintrc\\'" . json-mode))
 	(add-to-list 'auto-mode-alist '("\\.jsx?\\'" . web-mode))
 	(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 	)
