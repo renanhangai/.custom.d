@@ -4,6 +4,7 @@
 (setq my-package-list
       '(ecb
 		emmet-mode
+		flycheck
 		json-mode
 		web-mode
 		xclip ))
@@ -72,6 +73,12 @@
  (lambda()
    (require 'emmet-mode)
    (emmet-mode)
+
+   ; Enable eslint
+   (require 'flycheck)
+   (flycheck-mode)
+   (flycheck-add-mode 'javascript-eslint 'web-mode)
+
    (web-mode-use-tabs)
    (setq web-mode-markup-indent-offset tab-width)
    (setq web-mode-css-indent-offset tab-width)
