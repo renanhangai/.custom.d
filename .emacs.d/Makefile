@@ -1,5 +1,6 @@
 
 
+all: setup.elc
 
-init.elc: init.el
-	emacs --batch --eval '(byte-compile-file "init.el")'
+setup.elc: setup.el
+	emacs --batch --eval '(byte-compile-file "setup.el")'
