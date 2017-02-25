@@ -4,8 +4,9 @@
 (setq my-package-list
       '(ecb
 		emmet-mode
-		xclip
-		web-mode ))
+		json-mode
+		web-mode
+		xclip ))
 (setq-default tab-width 4)
 (setq-default tab-stop-list (number-sequence tab-width 200 tab-width))
 (setq-default indent-tabs-mode t)
@@ -18,47 +19,48 @@
 (defun my-package-initialize ()
   (require 'package)
   (add-to-list 'package-archives
-			   '("melpa" . "https://melpa.org/packages/") t)
-  (package-initialize)  
+			   '("melpa" . "https://melpa.org/packages/") t))
+(my-package-initialize)
+
+(defun user-configure()
+  ;; Install packages
   (unless package-archive-contents
     (package-refresh-contents))
   (dolist (package my-package-list)
     (unless (package-installed-p package)
-      (package-install package)))  
+      (package-install package)))
+
+  ;; IDO
+  (require 'ido)
+  (ido-mode t)
+  
+  ;; Enable line numbers
+  (require 'linum)
+  (global-linum-mode)
+
+  ;; Enable mouse usage on terminal mode
+  (unless window-system
+	(require 'mouse)
+	(xterm-mouse-mode t))
+
+  ;; Enable xclip on terminal mode
+  (unless window-system
+	(require 'xclip)
+	(xclip-mode t))
+  
+
+  ;;
+  ;; Auto mode list configuration
+  ;;
+  ;; Configure extensions to load
+  ;;
+  (defun user-configure-file-modes ()
+	(add-to-list 'auto-mode-alist '("\\.jsx?\\'" . web-mode))
+	(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+	)
+  (user-configure-file-modes)
   )
-(my-package-initialize)
-
-;; IDO mode
-(require 'ido)
-(ido-mode t)
-
-;;
-;; Mouse configuration
-;;
-;; - Enable mouse usage on terminal mode
-;;
-(unless window-system
-  (require 'mouse)
-  (xterm-mouse-mode t))
-
-;;
-;; Clipboard configuration
-;;
-(unless window-system
-  (require 'xclip)
-  (xclip-mode t))
-
-;;
-;; Auto mode list configuration
-;;
-;; Configure extensions to load
-;;
-(defun user-configure-file-modes ()
-  (add-to-list 'auto-mode-alist '("\\.jsx?\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-  )
-(user-configure-file-modes)
-
+(add-hook 'after-init-hook 'user-configure)
 
 ;;====================================
 ;; Configure specific modes
