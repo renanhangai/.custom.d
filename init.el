@@ -6,6 +6,8 @@
 		emmet-mode
 		flycheck
 		json-mode
+		sass-mode
+		scss-mode
 		web-mode
 		xclip ))
 (setq-default tab-width 4)
