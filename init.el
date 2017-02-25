@@ -1,20 +1,25 @@
 ;;
 ;; Custom configuration for emacs
 ;;
-(setq my-package-list
+(defvar my-tab-width 4 "Tab width configuration")
+(defvar my-package-list
       '(ecb
 		emmet-mode
 		flycheck
 		json-mode
+		php-mode
 		sass-mode
 		scss-mode
 		web-mode
-		xclip ))
-(setq-default tab-width 4)
-(setq-default tab-stop-list (number-sequence tab-width 200 tab-width))
+		xclip )
+	  "Package list to be auto installed")
+
+;;
+(setq-default tab-width my-tab-width)
+(setq-default tab-stop-list (number-sequence my-tab-width 200 my-tab-width))
 (setq-default indent-tabs-mode t)
-(setq-default c-basic-indent tab-width)
-(setq-default c-basic-offset tab-width)
+(setq-default c-basic-indent my-tab-width)
+(setq-default c-basic-offset my-tab-width)
 
 ;;=======================================
 ;; Install default packages
@@ -66,12 +71,21 @@
 	(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 	)
   (user-configure-file-modes)
-  )
+)
 (add-hook 'after-init-hook 'user-configure)
 
 ;;====================================
 ;; Configure specific modes
 ;;====================================
+
+;; php-mode
+(add-hook
+ 'php-mode-hook
+ (lambda()
+   (require 'flycheck)
+   (flycheck-mode)
+   (setq indent-tabs-mode t
+		 tab-width my-tab-width)))
 
 ;; web-mode
 (add-hook
@@ -86,8 +100,8 @@
    (flycheck-add-mode 'javascript-eslint 'web-mode)
 
    (web-mode-use-tabs)
-   (setq web-mode-markup-indent-offset tab-width)
-   (setq web-mode-css-indent-offset tab-width)
-   (setq web-mode-code-indent-offset tab-width)
-   (setq web-mode-script-padding tab-width)
-   (setq web-mode-style-padding tab-width)))
+   (setq web-mode-markup-indent-offset my-tab-width)
+   (setq web-mode-css-indent-offset my-tab-width)
+   (setq web-mode-code-indent-offset my-tab-width)
+   (setq web-mode-script-padding my-tab-width)
+   (setq web-mode-style-padding my-tab-width)))
