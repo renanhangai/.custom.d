@@ -3,8 +3,7 @@
 ;;
 (defvar my-tab-width 4 "Tab width configuration")
 (defvar my-package-list
-  '(ecb
-	emmet-mode
+  '(emmet-mode
 	flycheck
 	json-mode
 	js2-mode
