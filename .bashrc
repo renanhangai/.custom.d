@@ -1,22 +1,32 @@
 #!/bin/sh
 
+# Custom dir
+CUSTOM_DIR=$(dirname $(readlink -f "$0"))
+
 # Variables
-HOST='\h'
-MYGIT_PS1=''
+PS1_LOCAL=${CUSTOM_PS1_LOCAL:-'\u@\h'}
+PS1_COLOR=${CUSTOM_PS1_COLOR:-"32m"}
 COLORS=$(tput colors)
 
-colorize() {
-	if [ -n "$COLORS" ]; then
+#
+# Colorize PS1 output
+# Usage
+#    colorizePS1 color str
+#
+colorizePS1() {
+	if [ ! -n "$2" ]; then
+		return
+	fi
+	if [ ! -n "$COLORS" ]; then
 		echo "$2"
 		return
 	fi
-	
 	echo "\[$1\]$2\[\033[00m\]"	
 }
 
-#-----------------------
+#
 # Git completion if exists
-#-----------------------
+#
 if [ -n "$(type -t git)" ]; then
     # Try load from hard coded files if not exist
     if [ "$(type -t __git_ps1)" != "function" ]; then
@@ -28,9 +38,12 @@ if [ -n "$(type -t git)" ]; then
     if [ -n "$(type -t __git_ps1)" ]; then
 		GIT_PS1_SHOWDIRTYSTATE=1
 		GIT_PS1_SHOWUPSTREAM=1
-		MYGIT_PS1='$(__git_ps1)'
+	    PS1_GIT='$(__git_ps1)'
     fi
-fi;
+
+	# Git alias
+	alias s="git status -s"
+fi
 
 # Setup emacs as editor
 if [ -n "$(type -t emacs)" ]; then
@@ -38,10 +51,10 @@ if [ -n "$(type -t emacs)" ]; then
     alias emacs="\emacs -nw";
 fi
 
-# Alias
-alias s="git status -s"
+# Setup the PS1
+PS1_LOCAL=$(colorizePS1 '\033[01;$PS1_COLOR' "$PS1_LOCAL")
+PS1_DIR=$(colorizePS1 '\033[01;34m' '\w')
+PS1_GIT=$(colorizePS1 '\033[0;34m' "$PS1_GIT")
+PS1_SIGN=$(colorizePS1 '\033[0;${PS1_COLOR:-32m}' '$')
+PS1="\n$PS1_LOCAL:$PS1_DIR $PS1_GIT\n$PS1_SIGN "
 
-
-PS1_DIR=$(colorize '\033[01;34m' '\w')
-
-PS1='\n${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@'"$HOST"'\[\033[00m\]:\[\033[01;34m\]\w\[\033[0;34m\]'"$MYGIT_PS1"'\[\033[00m\]\n\[\033[0;32m\]\$\[\033[00m\] '
