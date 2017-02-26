@@ -3,9 +3,6 @@
 CUSTOM_DIR=$(dirname $(readlink -f "$0"))
 
 emacsRunConfiguration() {
-	echo "==============================================="
-    echo "Emacs "
-	echo "==============================================="
 	echo "Configuring emacs..."
 	emacs -q --batch -l "$CUSTOM_DIR/.emacs.d/init.el" --eval="(user-configure)"
 	echo "\nDone"
@@ -18,6 +15,10 @@ emacsRunConfiguration() {
 
 
 emacsSetup() {
+	echo ""
+	echo "==============================================="
+    echo "Emacs "
+	echo "==============================================="
 	if [ ! -n "$(type -t emacs)" ]; then
 		echo "Emacs is NOT installed. Skipping"
 		return
@@ -31,12 +32,13 @@ emacsSetup() {
 			echo "You must delete your previous .emacs.d dir before setupping."
 		fi
 	else
-		ln -s "$HOME/.emacs.d" "$CUSTOM_DIR/.emacs.d"
+		ln -s "$CUSTOM_DIR/.emacs.d" "$HOME/.emacs.d" 
 		emacsRunConfiguration
 	fi
 }
 
 bashSetup() {
+	echo ""
 	echo "==============================================="
     echo "bashrc "
 	echo "==============================================="
@@ -64,9 +66,21 @@ fi
 	return
 }
 
+eslintSetup() {
+	echo ""
+	echo "==============================================="
+    echo "eslintrc"
+	echo "==============================================="
+	if [ -f "$HOME/.eslintrc" ]; then
+		echo ".eslintrc already exists"
+	else
+		ln -s "$CUSTOM_DIR/.eslintrc" "$HOME/.eslintrc"
+		echo "Created link to .eslintrc"
+	fi
+}
+
 emacsSetup
-echo ""
 bashSetup
-echo ""
+eslintSetup
 
 echo "Successfully setupped everything"
