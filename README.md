@@ -7,5 +7,5 @@ Usage
 -------------
 Single line script
 ```sh
-wget -O - https://raw.githubusercontent.com/renanhangai/.config.d/master/install.sh | sh
+wget -qO - https://raw.githubusercontent.com/renanhangai/.config.d/master/install.sh | sh
 ```
