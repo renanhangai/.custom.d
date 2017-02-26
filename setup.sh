@@ -3,9 +3,17 @@
 CUSTOM_DIR=$(dirname $(readlink -f "$0"))
 
 emacsRunConfiguration() {
+	echo "==============================================="
+    echo "Emacs "
+	echo "==============================================="
 	echo "Configuring emacs..."
-	emacs -q --batch -l "$CUSTOM_DIR/.emacs.d/init.el" --eval="(user-configure)" 2>/dev/null
-	echo "Done"
+	emacs -q --batch -l "$CUSTOM_DIR/.emacs.d/init.el" --eval="(user-configure)"
+	echo "\nDone"
+	echo "Compiling setup..."
+	cd "$CUSTOM_DIR/.emacs.d"
+	make
+	cd "$CUSTOM_DIR"
+	echo "\nDone"
 }	
 
 
@@ -29,6 +37,9 @@ emacsSetup() {
 }
 
 bashSetup() {
+	echo "==============================================="
+    echo "bashrc "
+	echo "==============================================="
 	if [ ! -f "$HOME/.bashrc" ]; then
 		echo ".bashrc NOT found"
 		return
