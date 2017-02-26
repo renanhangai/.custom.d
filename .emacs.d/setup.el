@@ -142,7 +142,6 @@
    (require 'flycheck)
    (flycheck-mode)
    (add-to-list 'flycheck-eslint-rules-directories "/home/rhangai/.emacs.d")
-   (describe-variable 'flycheck-eslint-rules-directories)
    (setq js2-strict-trailing-comma-warning nil)))
 
 ;; php-mode
