@@ -40,13 +40,17 @@
 ;;=======================================
 (defun user-configure()
   ;; Install packages
-  (package-initialize)
-  (unless package-archive-contents
-    (package-refresh-contents))
-  (dolist (package my-package-list)
-    (unless (package-installed-p package)
-      (package-install package)))
-
+  (let ((is-package-initialized nil))
+    (package-initialize t)
+	(unless package-archive-contents
+	  (package-refresh-contents))
+	(dolist (package my-package-list)
+	  (unless (package-installed-p package)
+		(unless is-package-initialized
+		  (setq is-package-initialized t)
+		  (package-initialize))
+		(package-install package))))
+  
   ;; Set the font from the list
   (defun my-get-default-font-spec ()
 	"Get the default font"
