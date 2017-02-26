@@ -73,9 +73,9 @@
 		  (set-face-attribute 'default nil :height font-spec-size :family font-spec-face)))))
   
   (menu-bar-mode -1)
-  (tool-bar-mode -1)
-  (scroll-bar-mode -1)
   (when window-system
+    (scroll-bar-mode -1)
+    (tool-bar-mode -1)
 	(load-theme 'wombat))
 
   ;; IDO
@@ -93,8 +93,9 @@
 
   ;; Enable xclip on terminal mode
   (unless window-system
-	(require 'xclip)
-	(xclip-mode t))
+    (when (executable-find "xclip")
+      (require 'xclip)
+      (xclip-mode t)))
   
 
   ;;
