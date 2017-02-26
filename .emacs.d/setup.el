@@ -146,7 +146,6 @@
  (lambda()
    (require 'flycheck)
    (flycheck-mode)
-   (add-to-list 'flycheck-eslint-rules-directories "/home/rhangai/.emacs.d")
    (setq js2-strict-trailing-comma-warning nil)))
 
 ;; php-mode
