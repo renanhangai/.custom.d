@@ -1,7 +1,8 @@
-#!/bin/bash
+#!/bin/sh
 
 # Custom dir
-CUSTOM_DIR=$(dirname $(readlink -f "$0"))
+CUSTOM_DIR=$(dirname "${BASH_SOURCE[0]}")
+CUSTOM_DIR=${CUSTOM_DIR:-"$HOME/.custom.d/"}
 
 # Variables
 PS1_LOCAL=${CUSTOM_PS1_LOCAL:-'\u@\h'}

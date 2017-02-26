@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 CUSTOM_DIR=$(dirname $(readlink -f "$0"))
 
