@@ -6,7 +6,11 @@ CUSTOM_DIR=${CUSTOM_DIR:-"$HOME/.custom.d/"}
 
 # Variables
 PS1_LOCAL=${CUSTOM_PS1_LOCAL:-'\u@\h'}
-PS1_COLOR=${CUSTOM_PS1_COLOR:-"32m"}
+if [ -n "$SSH_CLIENT" ]; then
+	PS1_COLOR=${CUSTOM_PS1_COLOR:-"36m"}
+else
+	PS1_COLOR=${CUSTOM_PS1_COLOR:-"32m"}
+fi
 COLORS=$(tput colors)
 
 #
