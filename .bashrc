@@ -55,5 +55,5 @@ PS1_LOCAL=$(colorizePS1 '\033[01;$PS1_COLOR' "$PS1_LOCAL")
 PS1_DIR=$(colorizePS1 '\033[01;34m' '\w')
 PS1_GIT=$(colorizePS1 '\033[0;34m' "$PS1_GIT")
 PS1_SIGN=$(colorizePS1 '\033[0;${PS1_COLOR:-32m}' '$')
-PS1="\n$PS1_LOCAL:$PS1_DIR $PS1_GIT\n$PS1_SIGN "
+PS1="\n$PS1_LOCAL:$PS1_DIR$PS1_GIT\n$PS1_SIGN "
 
