@@ -19,7 +19,7 @@ emacsSetup() {
 	echo "==============================================="
     echo "Emacs "
 	echo "==============================================="
-	if [ ! -n "$(type -t emacs)" ]; then
+	if ! type emacs 1>/dev/null 2>/dev/null; then
 		echo "Emacs is NOT installed. Skipping"
 		return
 	fi

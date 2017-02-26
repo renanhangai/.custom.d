@@ -27,13 +27,13 @@ colorizePS1() {
 #
 # Git completion if exists
 #
-if [ -n "$(type -t git)" ]; then
+if type git 1>/dev/null 2>/dev/null; then
     # Try load from hard coded files if not exist
-    if [ "$(type -t __git_ps1)" != "function" ]; then
+    if ! type __git_ps1 1>/dev/null 2>/dev/null; then
 		. "$CUSTOM_DIR/scripts/git-prompt.sh"
     fi
     # Set completition
-    if [ -n "$(type -t __git_ps1)" ]; then
+    if type __git_ps1 1>/dev/null 2>/dev/null; then
 		GIT_PS1_SHOWDIRTYSTATE=1
 		GIT_PS1_SHOWUPSTREAM=1
 	    PS1_GIT='$(__git_ps1)'
@@ -44,7 +44,7 @@ if [ -n "$(type -t git)" ]; then
 fi
 
 # Setup emacs as editor
-if [ -n "$(type -t emacs)" ]; then
+if type emacs 1>/dev/null 2>/dev/null; then
     export EDITOR="emacs -nw";
     alias emacs="\emacs -nw";
 fi
