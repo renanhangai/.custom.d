@@ -30,9 +30,7 @@ colorizePS1() {
 if [ -n "$(type -t git)" ]; then
     # Try load from hard coded files if not exist
     if [ "$(type -t __git_ps1)" != "function" ]; then
-		if [ -f /usr/share/git-core/contrib/completion/git-prompt.sh ]; then
-			. /usr/share/git-core/contrib/completion/git-prompt.sh
-		fi
+		. "$CUSTOM_DIR/scripts/git-prompt.sh"
     fi
     # Set completition
     if [ -n "$(type -t __git_ps1)" ]; then
