@@ -69,6 +69,8 @@
 		  (setq font-spec current-font-spec))
 		(setq i (+ i 1)))
 	  font-spec))
+
+  
   (when window-system
     (let ((font-spec (my-get-default-font-spec)))
       (when font-spec
