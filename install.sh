@@ -8,11 +8,11 @@ if [ -d "$CUSTOM_DIR" ]; then
 fi
 
 if [ -n "$(type -t git)" ]; then
-	git clone https://github.com/renanhangai/.config.d "$CUSTOM_DIR";
+	git clone https://github.com/renanhangai/.custom.d "$CUSTOM_DIR";
 else
 	echo "Downloading file";
 	mkdir -p $CUSTOM_DIR;
-	wget -qO - https://github.com/renanhangai/.config.d/archive/master.tar.gz | tar -xzf - --strip-components=1 -C "$CUSTOM_DIR";
+	wget -qO - https://github.com/renanhangai/.custom.d/archive/master.tar.gz | tar -xzf - --strip-components=1 -C "$CUSTOM_DIR";
 fi
 
 echo "\n\n\n\nSetupping .custom.d";
