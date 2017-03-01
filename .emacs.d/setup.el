@@ -16,6 +16,9 @@
 (defvar my-font-list
   '(
 	("Source Code Pro" 100)
+	("Ubuntu Mono" 110)
+	("Inconsolata" 110)
+	("Courier New" 120)
 	)
   "Fonts to check")
 
@@ -63,7 +66,8 @@
 		(setq current-font-spec (nth i my-font-list))
 		(setq current-font-face (nth 0 current-font-spec))
 		(when (member current-font-face (font-family-list))
-		  (setq font-spec current-font-spec)))
+		  (setq font-spec current-font-spec))
+		(setq i (+ i 1)))
 	  font-spec))
   (when window-system
     (let ((font-spec (my-get-default-font-spec)))
