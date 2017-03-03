@@ -3,7 +3,9 @@
 ;;
 (defvar my-tab-width 4 "Tab width configuration")
 (defvar my-package-list
-  '(emmet-mode
+  '(company
+	company-tern
+	emmet-mode
 	flycheck
 	golden-ratio
 	json-mode
@@ -11,6 +13,7 @@
 	php-mode
 	sass-mode
 	scss-mode
+	tern
 	web-mode
 	xclip )
   "Package list to be auto installed")
@@ -99,6 +102,10 @@
   (require 'golden-ratio)
   (golden-ratio-mode 1)
 
+  ;; Company mode
+  (require 'company)
+  (global-company-mode)
+
   ;; Enable mouse usage on terminal mode
   (unless window-system
 	(require 'mouse)
@@ -160,6 +167,11 @@
  (lambda()
    (require 'flycheck)
    (flycheck-mode)
+   (require 'tern)
+   (tern-mode t)
+   (require 'company)
+   (require 'company-tern)
+   (add-to-list 'company-backends 'company-tern)
    (setq js2-strict-trailing-comma-warning nil)))
 
 ;; php-mode
@@ -177,8 +189,8 @@
  (lambda()
    (require 'emmet-mode)
    (emmet-mode)
-
-										; Enable eslint
+   
+   ;; Enable eslint
    (require 'flycheck)
    (flycheck-mode)
    (flycheck-add-mode 'javascript-eslint 'web-mode)
