@@ -5,6 +5,7 @@
 (defvar my-package-list
   '(emmet-mode
 	flycheck
+	golden-ratio
 	json-mode
 	js2-mode
 	php-mode
@@ -91,6 +92,10 @@
   ;; Enable line numbers
   (require 'linum)
   (global-linum-mode)
+
+  ;; Golden ratio mode
+  (require 'golden-ratio)
+  (golden-ratio-mode 1)
 
   ;; Enable mouse usage on terminal mode
   (unless window-system
