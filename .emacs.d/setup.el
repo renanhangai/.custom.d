@@ -29,6 +29,8 @@
 (setq-default indent-tabs-mode t)
 (setq-default c-basic-indent my-tab-width)
 (setq-default c-basic-offset my-tab-width)
+;; Defaults to line truncation
+(setq-default truncate-lines t)
 
 ;;=======================================
 ;; Initialize packages
