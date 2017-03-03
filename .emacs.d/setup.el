@@ -4,6 +4,7 @@
 (defvar my-tab-width 4 "Tab width configuration")
 (defvar my-package-list
   '(company
+	company-php
 	company-tern
 	emmet-mode
 	flycheck
@@ -90,6 +91,9 @@
     (tool-bar-mode -1)
 	(load-theme 'wombat))
 
+  
+  (global-unset-key "\C-c\C-c")
+
   ;; IDO
   (require 'ido)
   (ido-mode t)
@@ -138,6 +142,12 @@
 ;;====================================
 ;; Configure specific modes
 ;;====================================
+;; Auto complete
+(add-hook
+ 'company-mode-hook
+ (lambda()
+   (local-set-key (kbd "C-c C-c") 'company-complete)))
+
 ;; c++-mode
 (add-hook
  'c++-mode-hook
@@ -180,6 +190,8 @@
  (lambda()
    (require 'flycheck)
    (flycheck-mode)
+   (require 'company-php)
+   (add-to-list 'company-backends 'company-ac-php-backend)
    (setq indent-tabs-mode t
 		 tab-width my-tab-width)))
 
