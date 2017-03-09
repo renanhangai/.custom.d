@@ -21,6 +21,7 @@
 		"jsx": true
 	},
 	"rules": {
+		"comma-dangle": [2, "only-multiline"],
 		"consistent-return": [0],
 		"constructor-super": 1,
 		"key-spacing": [0],
