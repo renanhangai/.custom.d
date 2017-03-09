@@ -195,6 +195,17 @@
    (setq indent-tabs-mode t
 		 tab-width my-tab-width)))
 
+;; xml-mode
+(add-hook
+ 'nxml-mode-hook
+ (lambda()
+   (require 'flycheck)
+   (flycheck-mode)
+   (setq
+	nxml-child-indent my-tab-width
+    nxml-attribute-indent my-tab-width)))
+
+
 ;; web-mode
 (add-hook
  'web-mode-hook
