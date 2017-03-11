@@ -8,6 +8,11 @@ do
 	basename="${basename%.*}";
 
 	. $file
+
+	echo ""
+	echo "==============================================="
+    echo "Setupping ${basename} "
+	echo "==============================================="
     eval ${basename}Setup;
 done
 
