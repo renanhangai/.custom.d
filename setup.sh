@@ -2,6 +2,8 @@
 
 CUSTOM_DIR=$(dirname $(readlink -f "$0"))
 
+mkdir -p $CUSTOM_DIR/.tmp
+
 for file in $CUSTOM_DIR/setup/*.sh
 do
 	basename=$(basename $file);
