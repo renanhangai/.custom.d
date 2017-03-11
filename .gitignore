@@ -3,3 +3,9 @@
 !/.emacs.d/Makefile
 !/.emacs.d/init.el
 !/.emacs.d/setup.el
+
+# Tmp files
+*~
+.\#*
+\#*
+.tmp/
