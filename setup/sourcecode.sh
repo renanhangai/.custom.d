@@ -7,10 +7,10 @@ sourcecodeInstall() {
 	mkdir -p "$CUSTOM_DIR/.tmp/source-code-pro"
 
 	error=1
-	if [ -n "$(type -t curl)" ]; then
+	if [ -x "$(command -v curl)" ]; then
 		curl -L "$url" | tar -xzf - --strip-components=1 -C "$CUSTOM_DIR/.tmp/source-code-pro";
 		error=0
-	elif [ -n "$(type -t wget)" ]; then
+	elif [ -x "$(command -v wget)" ]; then
 		wget -qO - "$url" | tar -xzf - --strip-components=1 -C "$CUSTOM_DIR/.tmp/source-code-pro";
 		error=0
 	else
@@ -42,11 +42,19 @@ sourcecodeInstall() {
 }
 
 sourcecodeSetup() {
-	if [ ! -n "$(type -t fc-list)" ]; then
+	needinstall=0
+	if [ -x "$(command -v fc-list)" ]; then
+		echo "Checking font";
+		if fc-list | grep -qi "source code pro"; then
+			echo "Source code pro already installed";
+		else
+			needinstall=1
+		fi
+	else
 		echo "No font utility";
-	elif fc-list | grep -qi "source code pro"; then
-		echo "Source code pro already installed";
-	else	
+	fi
+	
+	if [ $needinstall -ne 0 ]; then
 		while true; do
 			read -p "Do you wish to install Source Code Pro [y/N]? " yn
 			case $yn in

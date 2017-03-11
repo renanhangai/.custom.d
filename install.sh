@@ -7,13 +7,13 @@ if [ -d "$CUSTOM_DIR" ]; then
 	exit;
 fi
 
-if [ -n "$(type -t git)" ]; then
+if [ -x "$(command -v git)" ]; then
 	git clone https://github.com/renanhangai/.custom.d "$CUSTOM_DIR";
-elif [ -n "$(type -t curl)" ]; then
+elif [ -x "$(command -v curl)" ]; then
 	echo "Downloading file";
 	mkdir -p $CUSTOM_DIR;
     curl -L https://github.com/renanhangai/.custom.d/archive/master.tar.gz | tar -xzf - --strip-components=1 -C "$CUSTOM_DIR";
-elif [ -n "$(type -t wget)" ]; then
+elif [ -x "$(command -v wget)" ]; then
 	echo "Downloading file";
 	mkdir -p $CUSTOM_DIR;
 	wget -qO - https://github.com/renanhangai/.custom.d/archive/master.tar.gz | tar -xzf - --strip-components=1 -C "$CUSTOM_DIR";
