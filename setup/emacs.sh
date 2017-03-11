@@ -12,10 +12,6 @@ emacsRunConfiguration() {
 
 
 emacsSetup() {
-	echo ""
-	echo "==============================================="
-    echo "Emacs "
-	echo "==============================================="
 	if ! type emacs 1>/dev/null 2>/dev/null; then
 		echo "Emacs is NOT installed. Skipping"
 		return

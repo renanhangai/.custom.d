@@ -1,8 +1,4 @@
 bashSetup() {
-	echo ""
-	echo "==============================================="
-    echo "bashrc "
-	echo "==============================================="
 	if [ ! -f "$HOME/.bashrc" ]; then
 		echo ".bashrc NOT found"
 		return
