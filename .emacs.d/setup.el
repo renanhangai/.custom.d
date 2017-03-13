@@ -16,7 +16,8 @@
 	scss-mode
 	tern
 	web-mode
-	xclip )
+	xclip
+	yaml-mode )
   "Package list to be auto installed")
 (defvar my-font-list
   '(
