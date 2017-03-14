@@ -11,6 +11,7 @@
 	golden-ratio
 	json-mode
 	js2-mode
+	markdown-mode
 	php-mode
 	sass-mode
 	scss-mode
