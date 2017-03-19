@@ -12,6 +12,7 @@
 	json-mode
 	js2-mode
 	markdown-mode
+	neotree
 	php-mode
 	sass-mode
 	scss-mode
@@ -93,9 +94,6 @@
     (tool-bar-mode -1)
 	(load-theme 'wombat))
 
-  
-  (global-unset-key "\C-c\C-c")
-
   ;; IDO
   (require 'ido)
   (ido-mode t)
@@ -110,7 +108,14 @@
 
   ;; Company mode
   (require 'company)
+  (global-unset-key "\C-c\C-c")
   (global-company-mode)
+  
+  ;; Neotree
+  (require 'neotree)
+  (setq neo-smart-open t)
+  (global-unset-key "\C-x\C-d")
+  (global-set-key "\C-x\C-d" 'neotree-toggle)
 
   ;; Enable mouse usage on terminal mode
   (unless window-system
