@@ -4,23 +4,23 @@
 (defvar my-tab-width 4 "Tab width configuration")
 (defvar my-package-list
   '(apache-mode
-	company
-	company-php
-	company-tern
-	emmet-mode
-	flycheck
-	golden-ratio
-	json-mode
-	js2-mode
-	nginx-mode
-	markdown-mode
-	php-mode
-	sass-mode
-	scss-mode
-	tern
-	web-mode
-	xclip
-	yaml-mode )
+    company
+    company-php
+    company-tern
+    emmet-mode
+    flycheck
+    golden-ratio
+    json-mode
+    js2-mode
+    nginx-mode
+    markdown-mode
+    php-mode
+    sass-mode
+    scss-mode
+    tern
+    web-mode
+    xclip
+    yaml-mode )
   "Package list to be auto installed")
 (defvar my-font-list
   '(
