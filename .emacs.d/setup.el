@@ -3,7 +3,8 @@
 ;;
 (defvar my-tab-width 4 "Tab width configuration")
 (defvar my-package-list
-  '(company
+  '(apache-mode
+	company
 	company-php
 	company-tern
 	emmet-mode
@@ -11,6 +12,7 @@
 	golden-ratio
 	json-mode
 	js2-mode
+	nginx-mode
 	php-mode
 	sass-mode
 	scss-mode
