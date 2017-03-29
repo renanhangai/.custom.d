@@ -13,6 +13,7 @@
 	json-mode
 	js2-mode
 	nginx-mode
+	markdown-mode
 	php-mode
 	sass-mode
 	scss-mode
