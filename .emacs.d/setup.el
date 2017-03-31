@@ -3,7 +3,8 @@
 ;;
 (defvar my-tab-width 4 "Tab width configuration")
 (defvar my-package-list
-  '(company
+  '(apache-mode
+	company
 	company-php
 	company-tern
 	emmet-mode
@@ -11,6 +12,7 @@
 	golden-ratio
 	json-mode
 	js2-mode
+	nginx-mode
 	markdown-mode
 	neotree
 	php-mode
@@ -22,12 +24,10 @@
 	yaml-mode )
   "Package list to be auto installed")
 (defvar my-font-list
-  '(
-	("Source Code Pro" 100)
-	("Ubuntu Mono" 110)
-	("Inconsolata" 110)
-	("Courier New" 120)
-	)
+  '(("Source Code Pro" 100)
+    ("Ubuntu Mono" 110)
+    ("Inconsolata" 110)
+    ("Courier New" 120))
   "Fonts to check")
 
 ;; Emacs tab identation
