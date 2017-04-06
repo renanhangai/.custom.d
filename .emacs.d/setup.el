@@ -97,6 +97,9 @@
   ;; IDO
   (require 'ido)
   (ido-mode t)
+
+  ;; Enable Shift+Arrow for windows
+  (windmove-default-keybindings)
   
   ;; Enable line numbers
   (require 'linum)
