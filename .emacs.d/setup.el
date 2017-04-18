@@ -18,6 +18,7 @@
 	php-mode
 	sass-mode
 	scss-mode
+	sql-indent
 	tern
 	web-mode
 	xclip
@@ -130,7 +131,11 @@
     (when (executable-find "xclip")
       (require 'xclip)
       (xclip-mode t)))
-  
+
+
+  ;; SQL indent
+  (eval-after-load "sql"
+	(load-library "sql-indent"))
 
   ;;
   ;; Auto mode list configuration
@@ -215,6 +220,11 @@
 	nxml-child-indent my-tab-width
     nxml-attribute-indent my-tab-width)))
 
+;; sql-mode
+(add-hook
+ 'sql-mode-hook
+ (lambda()
+   (sql-highlight-mysql-keywords)))
 
 ;; web-mode
 (add-hook
