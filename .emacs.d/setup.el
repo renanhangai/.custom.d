@@ -22,7 +22,8 @@
 	tern
 	web-mode
 	xclip
-	yaml-mode )
+	yaml-mode
+	yasnippet )
   "Package list to be auto installed")
 (defvar my-font-list
   '(("Source Code Pro" 100)
@@ -137,6 +138,12 @@
   (eval-after-load "sql"
 	(load-library "sql-indent"))
 
+  ;; yasnippet
+  (require 'yasnippet)
+  (define-key yas-minor-mode-map (kbd "<tab>") nil)
+  (define-key yas-minor-mode-map (kbd "TAB") nil)
+  (define-key yas-minor-mode-map (kbd "C-<tab>") 'yas-expand)
+  
   ;;
   ;; Auto mode list configuration
   ;;
