@@ -9,11 +9,12 @@
 	company-tern
 	emmet-mode
 	flycheck
-	golden-ratio
-	json-mode
-	js2-mode
-	nginx-mode
-	markdown-mode
+    golden-ratio
+    json-mode
+    js2-mode
+    nginx-mode
+    markdown-mode
+	multiple-cursors
 	neotree
 	php-mode
 	sass-mode
@@ -132,6 +133,29 @@
       (require 'xclip)
       (xclip-mode t)))
 
+  ;; Set multiple cursors with M-<mouse-1>
+  (require 'multiple-cursors)
+  (multiple-cursors-mode)
+  (global-set-key (kbd "M-.") 'mc/mark-next-like-this)
+  (global-set-key (kbd "M-,") 'mc/mark-previous-like-this)
+  (global-set-key (kbd "C-c M-,") 'mc/mark-all-like-this)
+  (eval-after-load 'tern
+    (lambda()
+      (define-key tern-mode-keymap [(meta ?.)] nil)
+      (define-key tern-mode-keymap [(control meta ?.)] nil)
+      (define-key tern-mode-keymap [(meta ?,)] nil)))
+  (eval-after-load 'js2
+    (lambda()
+      (define-key js2-mode-keymap [(meta ?.)] 'mc/mark-next-like-this)))
+  ;; (eval-after-load 'js
+  ;;   (lambda()
+  ;;     (define-key js-mode-keymap [remap js-find-symbol] nil)))
+  ;; (eval-after-load 'js2
+  ;; 	'(define-key js2-mode-keymap [(meta ?.)] nil)
+  ;; 	'(define-key js2-mode-keymap [(control meta ?.)] nil)
+  ;; 	'(define-key js2-mode-keymap [(meta ?,)] nil))
+  
+
 
   ;; SQL indent
   (eval-after-load "sql"
@@ -197,7 +221,10 @@
    (require 'company)
    (require 'company-tern)
    (add-to-list 'company-backends 'company-tern)
-   (setq js2-strict-trailing-comma-warning nil)))
+   (setq js2-strict-trailing-comma-warning nil)
+   (local-set-key (kbd "M-.") 'mc/mark-next-like-this)
+   (local-set-key (kbd "M-,") 'mc/mark-previous-like-this)
+   (local-set-key (kbd "C-c M-,") 'mc/mark-all-like-this)))
 
 ;; php-mode
 (add-hook
@@ -209,7 +236,7 @@
    (add-to-list 'company-backends 'company-ac-php-backend)
    (setq indent-tabs-mode t
 		 tab-width my-tab-width)))
-
+3
 ;; xml-mode
 (add-hook
  'nxml-mode-hook
