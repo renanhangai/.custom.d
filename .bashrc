@@ -55,8 +55,8 @@ fi
 
 # Setup emacs as editor
 if type emacs 1>/dev/null 2>/dev/null; then
-    export EDITOR="emacs -nw";
-    alias emacs="\emacs -nw";
+    export EDITOR="emacsclient -t -a ''";
+    alias emacs="emacsclient -t -a ''";
 fi
 
 # Setup the PS1
