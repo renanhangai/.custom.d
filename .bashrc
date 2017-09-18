@@ -59,6 +59,11 @@ if type emacs 1>/dev/null 2>/dev/null; then
     alias emacs="emacsclient -t -a ''";
 fi
 
+# Setup yarn
+if type yarn > /dev/null; then
+	export PATH="$PATH:$(yarn global bin)"
+fi
+
 # Setup the PS1
 PS1_LOCAL=$(colorizePS1 '\033[01;$PS1_COLOR' "$PS1_LOCAL")
 PS1_DIR=$(colorizePS1 '\033[01;34m' '\w')
