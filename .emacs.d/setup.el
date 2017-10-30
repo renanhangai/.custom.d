@@ -126,7 +126,10 @@
   ;; Enable mouse usage on terminal mode
   (unless window-system
 	(require 'mouse)
-	(xterm-mouse-mode t))
+	(xterm-mouse-mode t)
+	(when (equal (lookup-key (current-global-map) (kbd "<mouse-4>")) 'nil)
+	  (global-set-key (kbd "<mouse-4>") (lambda () (interactive) (scroll-down 7)))
+	  (global-set-key (kbd "<mouse-5>") (lambda () (interactive) (scroll-up 7)))))
 
   ;; Enable xclip on terminal mode
   (unless window-system
