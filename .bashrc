@@ -35,15 +35,22 @@ colorizePS1() {
 }
 
 #
+#
+#
+command_exists () {
+    command -v "$1" >/dev/null 2>&1 ;
+}
+
+#
 # Git completion if exists
 #
-if type git 1>/dev/null 2>/dev/null; then
+if command_exists git; then
     # Try load from hard coded files if not exist
-    if ! type __git_ps1 1>/dev/null 2>/dev/null; then
+    if ! command_exists __git_ps1; then
 		. "$CUSTOM_DIR/scripts/git-prompt.sh"
     fi
     # Set completition
-    if type __git_ps1 1>/dev/null 2>/dev/null; then
+    if command_exists __git_ps1; then
 		GIT_PS1_SHOWDIRTYSTATE=1
 		GIT_PS1_SHOWUPSTREAM=1
 	    PS1_GIT='$(__git_ps1)'
@@ -54,13 +61,13 @@ if type git 1>/dev/null 2>/dev/null; then
 fi
 
 # Setup emacs as editor
-if type emacs 1>/dev/null 2>/dev/null; then
+if command_exists emacs; then
     export EDITOR="emacsclient -t -a ''";
     alias emacs="emacsclient -t -a ''";
 fi
 
 # Setup yarn
-if type yarn > /dev/null; then
+if command_exists yarn; then
 	export PATH="$PATH:$(yarn global bin)"
 fi
 
