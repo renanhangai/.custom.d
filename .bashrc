@@ -63,6 +63,7 @@ fi
 # Setup emacs as editor
 if command_exists emacs; then
     export EDITOR="emacsclient -t -a ''";
+	export SUDO_EDITOR="emacs -nw"
     alias emacs="emacsclient -t -a ''";
 fi
 
