@@ -72,6 +72,12 @@ if command_exists yarn; then
 	export PATH="$PATH:$(yarn global bin)"
 fi
 
+# Setup composer
+if command_exists composer; then
+	composer_bin_path=$(composer global config home 2>/dev/null)
+	export PATH="$PATH:$composer_bin_path/vendor/bin"
+fi
+
 # Setup the PS1
 PS1_LOCAL=$(colorizePS1 '\033[01;$PS1_COLOR' "$PS1_LOCAL")
 PS1_DIR=$(colorizePS1 '\033[01;34m' '\w')
