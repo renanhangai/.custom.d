@@ -14,13 +14,16 @@
     js2-mode
     nginx-mode
     markdown-mode
+	mmm-mode
 	multiple-cursors
 	neotree
 	php-mode
+	pug-mode
 	sass-mode
 	scss-mode
 	sql-indent
 	tern
+	vue-mode
 	web-mode
 	xclip
 	yaml-mode
@@ -184,7 +187,7 @@
 	(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 	(add-to-list 'auto-mode-alist '("\\.json\\'" . json-mode))
 	(add-to-list 'auto-mode-alist '("\\.jsx?\\'" . js2-jsx-mode))
-	(add-to-list 'auto-mode-alist '("\\.vue\\'" . web-mode))
+	(add-to-list 'auto-mode-alist '("\\.vue\\'" . vue-mode))
 	)
   (user-configure-file-modes)
   )
@@ -265,6 +268,35 @@
  (lambda()
    (sql-highlight-mysql-keywords)))
 
+;; sql-mode
+(add-hook
+ 'vue-mode-hook
+ (lambda()
+   (require 'emmet-mode)
+   (emmet-mode)
+   (setq vue-html-color-interpolations t)
+   (setq vue-html-tab-width my-tab-width)
+   (setq vue-modes
+		 (quote ((:type template :name nil :mode web-mode)
+		  (:type template :name html :mode web-mode)
+		  (:type template :name jade :mode jade-mode)
+		  (:type template :name pug :mode pug-mode)
+		  (:type template :name slm :mode slim-mode)
+		  (:type template :name slim :mode slim-mode)
+		  (:type script :name nil :mode js-mode)
+		  (:type script :name js :mode js-mode)
+		  (:type script :name es6 :mode js-mode)
+		  (:type script :name babel :mode js-mode)
+		  (:type script :name coffee :mode coffee-mode)
+		  (:type script :name ts :mode typescript-mode)
+		  (:type script :name typescript :mode typescript-mode)
+		  (:type style :name nil :mode css-mode)
+		  (:type style :name css :mode css-mode)
+		  (:type style :name stylus :mode stylus-mode)
+		  (:type style :name less :mode less-css-mode)
+		  (:type style :name scss :mode scss-mode)
+		  (:type style :name sass :mode ssass-mode))))))
+
 ;; web-mode
 (add-hook
  'web-mode-hook
@@ -283,5 +315,3 @@
    (setq web-mode-code-indent-offset my-tab-width)
    (setq web-mode-script-padding my-tab-width)
    (setq web-mode-style-padding my-tab-width)))
-
-
