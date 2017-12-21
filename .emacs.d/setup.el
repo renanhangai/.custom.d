@@ -268,7 +268,7 @@
  (lambda()
    (sql-highlight-mysql-keywords)))
 
-;; sql-mode
+;; vue-mode
 (add-hook
  'vue-mode-hook
  (lambda()
@@ -276,26 +276,37 @@
    (emmet-mode)
    (setq vue-html-color-interpolations t)
    (setq vue-html-tab-width my-tab-width)
-   (setq vue-modes
-		 (quote ((:type template :name nil :mode web-mode)
-		  (:type template :name html :mode web-mode)
-		  (:type template :name jade :mode jade-mode)
-		  (:type template :name pug :mode pug-mode)
-		  (:type template :name slm :mode slim-mode)
-		  (:type template :name slim :mode slim-mode)
-		  (:type script :name nil :mode js-mode)
-		  (:type script :name js :mode js-mode)
-		  (:type script :name es6 :mode js-mode)
-		  (:type script :name babel :mode js-mode)
-		  (:type script :name coffee :mode coffee-mode)
-		  (:type script :name ts :mode typescript-mode)
-		  (:type script :name typescript :mode typescript-mode)
-		  (:type style :name nil :mode css-mode)
-		  (:type style :name css :mode css-mode)
-		  (:type style :name stylus :mode stylus-mode)
-		  (:type style :name less :mode less-css-mode)
-		  (:type style :name scss :mode scss-mode)
-		  (:type style :name sass :mode ssass-mode))))))
+   (set-face-attribute 'mmm-default-submode-face nil
+					   :background nil)
+   (setq vue-modes (quote
+	((:type template :name nil :mode web-mode)
+	 (:type template :name html :mode web-mode)
+	 (:type template :name jade :mode jade-mode)
+	 (:type template :name pug :mode pug-mode)
+	 (:type template :name slm :mode slim-mode)
+	 (:type template :name slim :mode slim-mode)
+	 (:type script :name nil :mode js-mode)
+	 (:type script :name js :mode js-mode)
+	 (:type script :name es6 :mode js-mode)
+	 (:type script :name babel :mode js-mode)
+	 (:type script :name coffee :mode coffee-mode)
+	 (:type script :name ts :mode typescript-mode)
+	 (:type script :name typescript :mode typescript-mode)
+	 (:type style :name nil :mode css-mode)
+	 (:type style :name css :mode css-mode)
+	 (:type style :name stylus :mode stylus-mode)
+	 (:type style :name less :mode less-css-mode)
+	 (:type style :name scss :mode css-mode)
+	 (:type style :name sass :mode ssass-mode))))))
+
+;;
+(add-hook
+ 'pug-mode-hook
+ (lambda()
+   (message "OI")
+   ;(append-to-list 'pug-font-lock-keywords ("\\(?:^\\s-*\\|:\\s-+\\)\\<\\(\\.\\|[a-zA-Z0-9_-]+\\)\\>" 0 font-lock-function-name-face))
+   (setq pug-tags-re "\\(?:^\\s-*\\|:\\s-+\\)\\<\\(\\.\\|[a-zA-Z0-9_-]+\\)\\>")
+   (add-to-list 'pug-font-lock-keywords '("\\(?:^\\s-*\\|:\\s-+\\)\\<\\(\\.\\|[a-zA-Z0-9_-]+\\)\\>" 1 font-lock-function-name-face))))
 
 ;; web-mode
 (add-hook
